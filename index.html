@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Арсенал — Антикино</title>
+<style>
+:root{--red:#e10b1f;--dark-red:#9c0010;--gold:#c9a24b;--navy:#0b1a3a;--bg:#0a0507;--card:#16090c;--text:#f4eded;--muted:#b9a5a8}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+a{color:inherit;text-decoration:none}
+.container{width:min(1100px,92%);margin:0 auto}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,5,7,.88);backdrop-filter:blur(8px);border-bottom:2px solid var(--red)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.5rem;letter-spacing:2px;text-transform:uppercase}
+.brand span{color:var(--red)}
+.spin{width:46px;height:46px;object-fit:contain;animation:rotate 4s linear infinite;filter:drop-shadow(0 0 8px rgba(225,11,31,.7))}
+.spin-fallback{width:46px;height:46px;border-radius:50%;border:3px solid var(--gold);background:var(--red);display:none;align-items:center;justify-content:center;font-weight:900;animation:rotate 4s linear infinite}
+@keyframes rotate{to{transform:rotateY(360deg)}}
+.menu{display:flex;gap:24px;list-style:none}
+.menu a{font-weight:600;text-transform:uppercase;font-size:.85rem;letter-spacing:1px;padding:6px 0;border-bottom:2px solid transparent;transition:.2s}
+.menu a:hover{border-color:var(--red);color:var(--red)}
+.burger{display:none;background:none;border:0;color:#fff;font-size:1.9rem;cursor:pointer}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;text-align:center;padding:100px 0 60px;
+background:radial-gradient(circle at 50% 30%,rgba(225,11,31,.45),transparent 60%),linear-gradient(160deg,#1a0006,#0a0507 70%);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 80px,rgba(255,255,255,.025) 80px 160px)}
+.hero .container{position:relative}
+.hero .logo-big{width:170px;height:170px;object-fit:contain;animation:rotate 5s linear infinite;filter:drop-shadow(0 0 25px rgba(225,11,31,.8));margin-bottom:10px}
+.hero h1{font-size:clamp(2.6rem,9vw,5.5rem);font-weight:900;text-transform:uppercase;letter-spacing:4px;line-height:1}
+.hero h1 span{color:var(--red);text-shadow:0 0 30px rgba(225,11,31,.6)}
+.hero p{margin:18px auto 30px;max-width:560px;color:var(--muted);font-size:1.1rem}
+.btn{display:inline-block;background:var(--red);color:#fff;border:0;padding:14px 30px;font-weight:800;text-transform:uppercase;letter-spacing:1px;border-radius:6px;cursor:pointer;font-size:1rem;transition:.2s;border-bottom:4px solid var(--dark-red)}
+.btn:hover{transform:translateY(-2px);background:#ff1a30}
+.btn.outline{background:transparent;border:2px solid var(--red);margin-left:10px}
+.status{display:inline-block;margin-top:26px;padding:8px 18px;border:1px solid var(--gold);border-radius:30px;color:var(--gold);font-size:.9rem}
+
+/* SECTIONS */
+section{padding:80px 0}
+h2{font-size:clamp(1.8rem,5vw,2.6rem);text-transform:uppercase;text-align:center;margin-bottom:10px;letter-spacing:2px}
+h2::after{content:"";display:block;width:70px;height:4px;background:var(--red);margin:12px auto 0}
+.sub{text-align:center;color:var(--muted);margin-bottom:40px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid #2b1217;border-radius:12px;padding:26px;transition:.25s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-5px);border-color:var(--red);box-shadow:0 10px 30px rgba(225,11,31,.2)}
+.card.active{border-color:var(--red);box-shadow:0 0 0 2px var(--red),0 10px 30px rgba(225,11,31,.3)}
+.card h3{text-transform:uppercase;font-size:1.05rem;margin-bottom:8px;color:var(--gold)}
+.price{font-size:2.2rem;font-weight:900;color:var(--red)}
+.price small{font-size:1rem;color:var(--muted);font-weight:500}
+.card p{color:var(--muted);font-size:.92rem;margin-top:6px}
+.badge{position:absolute;top:12px;right:12px;background:var(--red);font-size:.7rem;padding:3px 9px;border-radius:20px;font-weight:700;display:none}
+.card.active .badge{display:block}
+.extras{margin-top:30px;text-align:center;color:var(--muted)}
+
+/* CALC + BOOKING */
+.bookbox{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
+form{background:var(--card);border:1px solid #2b1217;border-radius:12px;padding:28px}
+label{display:block;font-size:.85rem;color:var(--muted);margin:14px 0 5px;text-transform:uppercase;letter-spacing:1px}
+input,select{width:100%;padding:12px;background:#0d0507;border:1px solid #3a1a20;border-radius:6px;color:#fff;font-size:1rem}
+input:focus,select:focus{outline:2px solid var(--red)}
+.total{background:linear-gradient(135deg,var(--red),var(--dark-red));border-radius:12px;padding:28px;text-align:center}
+.total .sum{font-size:3rem;font-weight:900}
+.total p{opacity:.9}
+.hint{font-size:.85rem;color:var(--muted);margin-top:12px}
+
+/* RULES */
+.rules{list-style:none;display:grid;gap:14px;max-width:760px;margin:0 auto}
+.rules li{background:var(--card);border-left:5px solid var(--red);padding:18px 20px;border-radius:8px;display:flex;gap:14px;align-items:center}
+.rules .ic{font-size:1.6rem}
+.rules b{color:var(--gold)}
+
+/* CONTACTS */
+.contacts{text-align:center}
+.phone{display:block;font-size:clamp(1.6rem,6vw,2.4rem);font-weight:900;margin:8px 0;color:var(--red)}
+footer{text-align:center;padding:26px;border-top:2px solid var(--red);color:var(--muted);font-size:.9rem}
+
+@media(max-width:800px){
+.menu{position:fixed;top:68px;left:0;right:0;background:#12060a;flex-direction:column;padding:20px 6%;gap:16px;display:none;border-bottom:2px solid var(--red)}
+.menu.open{display:flex}
+.burger{display:block}
+.bookbox{grid-template-columns:1fr}
+.btn.outline{margin:12px 0 0}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="container nav">
+  <a href="#top" class="brand">
+    <span style="color:#fff">Арсенал</span>
+    <img class="spin" id="logoNav" src="logo.png" alt="Логотип Арсенал">
+    <div class="spin-fallback" id="fbNav">А</div>
+  </a>
+  <button class="burger" id="burger" aria-label="Меню">☰</button>
+  <ul class="menu" id="menu">
+    <li><a href="#top">Главная</a></li>
+    <li><a href="#prices">Прайслист</a></li>
+    <li><a href="#booking">Бронь</a></li>
+    <li><a href="#rules">Правила</a></li>
+    <li><a href="#contacts">Контакты</a></li>
+  </ul>
+</div>
+</header>
+
+<div id="top" class="hero">
+<div class="container">
+  <img class="logo-big" id="logoBig" src="logo.png" alt="Арсенал">
+  <h1>Анти<span>кино</span> Арсенал</h1>
+  <p>Футбольные трансляции, кабинки PS5 и уютные залы. Играй, смотри, болей!</p>
+  <a href="#booking" class="btn">Забронировать</a>
+  <a href="#prices" class="btn outline">Цены</a><br>
+  <div class="status" id="status"></div>
+</div>
+</div>
+
+<section id="prices">
+<div class="container">
+  <h2>Прайслист</h2>
+  <p class="sub">Цены указаны в сомах</p>
+  <div class="grid">
+    <div class="card"><h3>⚽ Футбольная трансляция</h3><div class="price">600–1000<small> с</small></div><p>Матчи топ-лиг на большом экране</p></div>
+    <div class="card" id="cDay"><span class="badge">Сейчас</span><h3>🎮 Кабинка PS5 до 18:00</h3><div class="price">150<small> с/час</small></div><p>Дневная цена со скидкой</p></div>
+    <div class="card" id="cEve"><span class="badge">Сейчас</span><h3>🎮 Кабинка после 18:00</h3><div class="price">300<small> с/час</small></div><p>Вечерний тариф</p></div>
+    <div class="card"><h3>📦 1-пакет</h3><div class="price">500<small> с</small></div><p>2 часа в кабинке</p></div>
+    <div class="card"><h3>📦 2-пакет</h3><div class="price">600<small> с</small></div><p>3 часа в кабинке</p></div>
+    <div class="card" id="cNight"><span class="badge">Сейчас</span><h3>🌙 Ночь</h3><div class="price">1000<small> с</small></div><p>С 00:00 до 10:00 утра</p></div>
+  </div>
+  <p class="extras">🍿 Попкорн и 🥤 напитки — в баре</p>
+</div>
+</section>
+
+<section id="booking" style="background:#0f0609">
+<div class="container">
+  <h2>Бронь и расчёт</h2>
+  <p class="sub">Выберите тариф — стоимость посчитается сама, а заявка уйдёт нам в WhatsApp</p>
+  <div class="bookbox">
+    <form id="form">
+      <label>Ваше имя</label>
+      <input id="name" required placeholder="Имя">
+      <label>Телефон</label>
+      <input id="phone" type="tel" required placeholder="0700 000 000">
+      <label>Услуга</label>
+      <select id="service">
+        <option value="hour">Кабинка PS5 (почасовая)</option>
+        <option value="p1">1-пакет — 2 часа</option>
+        <option value="p2">2-пакет — 3 часа</option>
+        <option value="night">Ночь 00:00–10:00</option>
+        <option value="foot">Футбольная трансляция</option>
+      </select>
+      <label>Дата</label>
+      <input id="date" type="date" required>
+      <label>Время начала</label>
+      <input id="time" type="time" required value="18:00">
+      <div id="hoursWrap">
+        <label>Количество часов</label>
+        <input id="hours" type="number" min="1" max="12" value="1">
+      </div>
+      <label>Количество гостей</label>
+      <input id="guests" type="number" min="1" max="30" value="2">
+      <br><button class="btn" type="submit" style="width:100%;margin-top:20px">Отправить в WhatsApp</button>
+    </form>
+    <div class="total">
+      <p>Итого к оплате</p>
+      <div class="sum" id="sum">0 с</div>
+      <p id="detail"></p>
+      <p class="hint" style="color:#fff">Футбольная трансляция: 600–1000 с, точная цена зависит от матча — уточним при брони.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="rules">
+<div class="container">
+  <h2>Правила</h2>
+  <p class="sub">Пожалуйста, соблюдайте порядок в нашем заведении</p>
+  <ul class="rules">
+    <li><span class="ic">🚫</span><div>Интимные контакты — <b>штраф 2000 с</b></div></li>
+    <li><span class="ic">📹</span><div>Ведётся <b>видеонаблюдение</b></div></li>
+    <li><span class="ic">🔞</span><div>Людям до 18 лет — <b>только до 22:00</b></div></li>
+    <li><span class="ic">🚭</span><div><b>Курить в кабинках запрещено!</b></div></li>
+  </ul>
+</div>
+</section>
+
+<section id="contacts" style="background:#0f0609">
+<div class="container contacts">
+  <h2>Контакты</h2>
+  <p class="sub">Звоните и бронируйте</p>
+  <a class="phone" href="tel:+996702999887">0702 999 887</a>
+  <a class="phone" href="tel:+996223001505">0223 001 505</a>
+  <br>
+  <a class="btn" href="https://wa.me/996702999887" target="_blank" rel="noopener">Написать в WhatsApp</a>
+</div>
+</section>
+
+<footer>© <span id="year"></span> Антикино «Арсенал». Все права защищены.</footer>
+
+<script>
+// Логотип: если файла logo.png нет — показываем запасной вариант
+const picker=document.createElement('input');
+picker.type='file';picker.accept='image/*';picker.style.display='none';
+document.body.appendChild(picker);
+function setLogo(src){
+  ['logoNav','logoBig'].forEach(id=>{const el=document.getElementById(id);el.style.display='';el.src=src;});
+  document.getElementById('fbNav').style.display='none';
+}
+let saved=null;
+try{saved=localStorage.getItem('arsenalLogo');}catch(e){}
+if(saved) setLogo(saved);
+['logoNav','logoBig'].forEach(id=>{
+  const el=document.getElementById(id);
+  el.addEventListener('error',()=>{
+    el.style.display='none';
+    if(id==='logoNav'){const f=document.getElementById('fbNav');f.style.display='flex';f.title='Нажмите, чтобы выбрать логотип';f.style.cursor='pointer';}
+  });
+});
+// Нажмите на красный круг с «А», чтобы выбрать логотип из галереи
+document.getElementById('fbNav').addEventListener('click',()=>picker.click());
+picker.addEventListener('change',()=>{
+  const f=picker.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{setLogo(r.result);try{localStorage.setItem('arsenalLogo',r.result);}catch(e){}};
+  r.readAsDataURL(f);
+});
+
+// Меню
+const menu=document.getElementById('menu');
+document.getElementById('burger').onclick=()=>menu.classList.toggle('open');
+menu.querySelectorAll('a').forEach(a=>a.onclick=()=>menu.classList.remove('open'));
+document.getElementById('year').textContent=new Date().getFullYear();
+
+// Текущий тариф
+function updateStatus(){
+  const h=new Date().getHours();
+  ['cDay','cEve','cNight'].forEach(i=>document.getElementById(i).classList.remove('active'));
+  let t;
+  if(h<10){t='Сейчас действует ночной тариф: 1000 с';document.getElementById('cNight').classList.add('active');}
+  else if(h<18){t='Сейчас дневной тариф: PS5 — 150 с/час';document.getElementById('cDay').classList.add('active');}
+  else{t='Сейчас вечерний тариф: PS5 — 300 с/час';document.getElementById('cEve').classList.add('active');}
+  document.getElementById('status').textContent=t;
+}
+updateStatus();
+
+// Калькулятор
+const $=id=>document.getElementById(id);
+const names={hour:'Кабинка PS5',p1:'1-пакет (2 часа)',p2:'2-пакет (3 часа)',night:'Ночь 00:00–10:00',foot:'Футбольная трансляция'};
+let total=0,detail='';
+function calc(){
+  const s=$('service').value;
+  $('hoursWrap').style.display=s==='hour'?'block':'none';
+  if(s==='hour'){
+    const hrs=Math.max(1,+$('hours').value||1);
+    const [hh,mm]=($('time').value||'18:00').split(':').map(Number);
+    let sum=0;
+    for(let i=0;i<hrs;i++){
+      const cur=(hh+i)%24;
+      sum+=(cur>=18||cur<0)?300:(cur<10&&cur>=0&&false?0:150);
+      if(cur>=18) {} 
+    }
+    // пересчёт аккуратно по каждому часу
+    sum=0;
+    for(let i=0;i<hrs;i++){const cur=(hh+i)%24;sum+=cur>=18?300:150;}
+    total=sum;detail=hrs+' ч · по тарифу времени начала каждого часа';
+  }else if(s==='p1'){total=500;detail='2 часа';}
+  else if(s==='p2'){total=600;detail='3 часа';}
+  else if(s==='night'){total=1000;detail='С 00:00 до 10:00';}
+  else{total=0;detail='600–1000 с по матчу';}
+  $('sum').textContent=s==='foot'?'600–1000 с':total+' с';
+  $('detail').textContent=detail;
+}
+['service','hours','time'].forEach(i=>$(i).addEventListener('input',calc));
+$('date').min=new Date().toISOString().split('T')[0];
+$('date').value=$('date').min;
+calc();
+
+// Отправка брони в WhatsApp
+$('form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const s=$('service').value;
+  const msg=`Бронь «Арсенал»%0AИмя: ${encodeURIComponent($('name').value)}%0AТелефон: ${encodeURIComponent($('phone').value)}%0AУслуга: ${encodeURIComponent(names[s])}%0AДата: ${$('date').value}%0AВремя: ${$('time').value}%0AГостей: ${$('guests').value}%0AСумма: ${encodeURIComponent(s==='foot'?'600–1000 с':total+' с')}`;
+  window.open('https://wa.me/996702999887?text='+msg,'_blank');
+});
+</script>
+</body>
+</html>
