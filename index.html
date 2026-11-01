@@ -146,7 +146,6 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--muted);t
     </a>
     <div class="tabs">
     <button class="tabbtn" data-go="home">Главная</button>
-    <button class="tabbtn" data-go="cabins">Обзор кабинок</button>
     <button class="tabbtn" data-go="prices">Прайс и бронь</button>
     <button class="tabbtn" data-go="games">Игры</button>
     <button class="tabbtn" data-go="snacks">Снеки</button>
@@ -162,21 +161,39 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--muted);t
 
 <!-- ГЛАВНАЯ -->
 <section class="tab" id="home">
+  <div id="cabins">
+  <h2 class="title">Обзор <span class="g">кабинок</span></h2>
+  <p class="sub">У каждой кабинки свой стиль — выбирайте по настроению</p>
+  <div class="gallery">
+    <figure class="shot"><img data-img="p4" alt="Кабинка Arsenal"><figcaption>Кабинка Arsenal — большой экран и форма клуба</figcaption></figure>
+    <figure class="shot"><img data-img="p5" alt="Кабинка Real Madrid"><figcaption>Кабинка Real Madrid</figcaption></figure>
+    <figure class="shot"><img data-img="p6" alt="Кабинка Zone 51"><figcaption>Zone 51 — с подсветкой</figcaption></figure>
+    <figure class="shot"><img data-img="p7" alt="Красная кабинка"><figcaption>Красная кабинка — FC26 на большом экране</figcaption></figure>
+    <figure class="shot"><img data-img="p8" alt="Кабинка Barcelona"><figcaption>Кабинка Barcelona</figcaption></figure>
+    <figure class="shot"><img data-img="p13" alt="Большая кабинка"><figcaption>Большая кабинка — угловой диван для компании</figcaption></figure>
+    <figure class="shot"><img data-img="p14" alt="Кабинка с большим экраном"><figcaption>Большой экран, колонки JBL и две PlayStation</figcaption></figure>
+    <figure class="shot"><img data-img="p15" alt="Кабинка с UFC"><figcaption>Кабинка с рисунком на стене — играем в UFC</figcaption></figure>
+  </div>
+  <div class="btns" style="margin-top:20px"><button class="btn" data-go="booking">Забронировать</button></div>
+</div>
+
   <div class="hero">
     <img class="bg-logo" data-img="logo" alt="">
     <div class="eyebrow">Антикино · футбол и игры</div>
     <h1>Футбол.<br>Кино.<br><span class="g">PlayStation.</span></h1>
-    <p class="lead">Отдых с друзьями в уютных кабинках: футбольные трансляции, большой экран, караоке и игры на PS5.</p>
+    <p class="lead">Антикино с приватными кабинками: PS5 и PS3, профессиональное караоке и экраны по 2 метра. Футбольные трансляции, а еду можно приносить с собой.</p>
     <div class="btns">
       <button class="btn" data-go="booking">Забронировать</button>
-      <button class="btn ghost" data-go="cabins">Смотреть кабинки</button>
+      <button class="btn ghost" data-go="prices">Смотреть цены</button>
     </div>
   </div>
 
   <div class="cards">
     <div class="card"><span class="ic">⚽</span><h3>Футбольная трансляция</h3><p>Смотрите матчи на большом экране. От 600 до 1000 с.</p></div>
-    <div class="card"><span class="ic">🎮</span><h3>PlayStation + Антикино</h3><p>Приватные кабинки с геймпадами. От 200 с/час.</p></div>
-    <div class="card"><span class="ic">🎤</span><h3>Караоке</h3><p>Поём с друзьями. От 300 с/час.</p></div>
+    <div class="card"><span class="ic">🎮</span><h3>PlayStation + Антикино</h3><p>Игры на PS5 и PS3 в приватных кабинках. От 200 с/час.</p></div>
+    <div class="card"><span class="ic">🎤</span><h3>Профессиональное караоке</h3><p>Микшер, беспроводные микрофоны и акустика JBL. От 300 с/час.</p></div>
+    <div class="card"><span class="ic">📺</span><h3>Экраны 2 метра</h3><p>Огромные экраны в каждой кабинке: футбол, кино и игры.</p></div>
+    <div class="card"><span class="ic">🥡</span><h3>Еда с собой</h3><p>Можно приносить свою еду. Снеки и напитки есть и в баре.</p></div>
     <div class="card"><span class="ic">🌙</span><h3>Ночной тариф</h3><p>С 24:00 до 10:00 утра за 1200 с.</p></div>
     <div class="card"><span class="ic">💨</span><h3>Кальян</h3><p>600 с за один кальян.</p></div>
     <div class="card"><span class="ic">🍿</span><h3>Снеки и напитки</h3><p>Чипсы, газировка, энергетики и батончики в баре.</p></div>
@@ -196,7 +213,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--muted);t
   <div class="pgrid">
     <div class="pcard"><h3>⚽ Футбольная трансляция</h3><div class="p">600–1000<small> с</small></div><p>Цена зависит от матча</p></div>
     <div class="pcard" id="cDay"><span class="tag">Сейчас</span><h3>🎮 PlayStation + Антикино, 1 час</h3><div class="p">200<small> с</small></div><p>Дневной тариф</p></div>
-    <div class="pcard" id="cEve"><span class="tag">Сейчас</span><h3>🎮 Открытое время после 18:00</h3><div class="p">250<small> с</small></div><p>Вечерний тариф</p></div>
+    <div class="pcard" id="cEve"><span class="tag">Сейчас</span><h3>🎮 Открытое время после 18:00</h3><div class="p">300<small> с</small></div><p>Вечерний тариф</p></div>
     <div class="pcard"><h3>📦 Пакет 1 час (после 18:00)</h3><div class="p">300<small> с</small></div><p>PlayStation + Антикино</p></div>
     <div class="pcard"><h3>📦 Пакет 2 часа (после 18:00)</h3><div class="p">500<small> с</small></div><p>PlayStation + Антикино</p></div>
     <div class="pcard"><h3>📦 Пакет 3 часа (после 18:00)</h3><div class="p">700<small> с</small></div><p>PlayStation + Антикино</p></div>
@@ -298,23 +315,6 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--muted);t
   </div>
 </section>
 
-<!-- ОБЗОР КАБИНОК -->
-<section class="tab" id="cabins">
-  <h2 class="title">Обзор <span class="g">кабинок</span></h2>
-  <p class="sub">У каждой кабинки свой стиль — выбирайте по настроению</p>
-  <div class="gallery">
-    <figure class="shot"><img data-img="p4" alt="Кабинка Arsenal"><figcaption>Кабинка Arsenal — большой экран и форма клуба</figcaption></figure>
-    <figure class="shot"><img data-img="p5" alt="Кабинка Real Madrid"><figcaption>Кабинка Real Madrid</figcaption></figure>
-    <figure class="shot"><img data-img="p6" alt="Кабинка Zone 51"><figcaption>Zone 51 — с подсветкой</figcaption></figure>
-    <figure class="shot"><img data-img="p7" alt="Красная кабинка"><figcaption>Красная кабинка — FC26 на большом экране</figcaption></figure>
-    <figure class="shot"><img data-img="p8" alt="Кабинка Barcelona"><figcaption>Кабинка Barcelona</figcaption></figure>
-    <figure class="shot"><img data-img="p13" alt="Большая кабинка"><figcaption>Большая кабинка — угловой диван для компании</figcaption></figure>
-    <figure class="shot"><img data-img="p14" alt="Кабинка с большим экраном"><figcaption>Большой экран, колонки JBL и две PlayStation</figcaption></figure>
-    <figure class="shot"><img data-img="p15" alt="Кабинка с UFC"><figcaption>Кабинка с рисунком на стене — играем в UFC</figcaption></figure>
-  </div>
-  <div class="btns" style="margin-top:20px"><button class="btn" data-go="booking">Забронировать</button></div>
-</section>
-
 <!-- АППАРАТУРА -->
 <section class="tab" id="gear">
   <h2 class="title">Аппаратура <span class="g">и звук</span></h2>
@@ -394,6 +394,7 @@ const btns=[...document.querySelectorAll('.tabbtn')];
 function go(id,push){
   let scrollTo=null;
   if(id==='booking'){scrollTo='booking';id='prices';}
+  if(id==='cabins'){scrollTo='cabins';id='home';}
   if(!tabs.some(t=>t.id===id))id='home';
   tabs.forEach(t=>t.classList.toggle('on',t.id===id));
   btns.forEach(b=>b.classList.toggle('on',b.dataset.go===id));
@@ -422,13 +423,13 @@ $('year').textContent=new Date().getFullYear();
   let t,id;
   if(h<10){t='Сейчас ночной тариф: 1200 с';id='cNight';}
   else if(h<18){t='Сейчас дневной тариф: PlayStation — 200 с/час';id='cDay';}
-  else{t='Сейчас вечерний тариф: открытое время — 250 с';id='cEve';}
+  else{t='Сейчас вечерний тариф: открытое время — 300 с';id='cEve';}
   $(id).classList.add('active');
 })();
 
 // Калькулятор
 const names={ps_day:'PlayStation + Антикино до 18:00',ps_open:'Открытое время после 18:00',ps1:'Пакет 1 час',ps2:'Пакет 2 часа',ps3:'Пакет 3 часа',night:'Ночь 24:00–10:00',k_day:'Караоке до 18:00',k_eve:'Караоке после 18:00',k2:'Караоке 2 часа',k3:'Караоке 3 часа',hookah:'Кальян',foot:'Футбольная трансляция'};
-const perHour={ps_day:200,ps_open:250,k_day:300,k_eve:500};
+const perHour={ps_day:200,ps_open:300,k_day:300,k_eve:500};
 const fixed={ps1:[300,'1 час'],ps2:[500,'2 часа'],ps3:[700,'3 часа'],night:[1200,'С 24:00 до 10:00'],k2:[800,'2 часа'],k3:[1000,'3 часа'],hookah:[600,'Один кальян']};
 let total=0;
 function calc(){
